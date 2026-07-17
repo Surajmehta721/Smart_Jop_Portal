@@ -1,6 +1,6 @@
 package jobs.com.SmartJobPortal.service;
 
-import jobs.com.SmartJobPortal.UserRepo;
+import jobs.com.SmartJobPortal.repository.UserRepo;
 import jobs.com.SmartJobPortal.entity.JobPortalUser;
 
 import jobs.com.SmartJobPortal.model.LoginRequest;

@@ -1,4 +1,4 @@
-package jobs.com.SmartJobPortal;
+package jobs.com.SmartJobPortal.repository;
 
 import jobs.com.SmartJobPortal.entity.JobPortalUser;
 import org.springframework.data.jpa.repository.JpaRepository;

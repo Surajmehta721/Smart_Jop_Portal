@@ -1,6 +1,6 @@
 package jobs.com.SmartJobPortal.security;
 
-import jobs.com.SmartJobPortal.UserRepo;
+import jobs.com.SmartJobPortal.repository.UserRepo;
 import jobs.com.SmartJobPortal.entity.JobPortalUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 

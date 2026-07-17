@@ -13,13 +13,24 @@ public class JobPortalUser {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne(mappedBy = "recruiter", cascade = CascadeType.ALL)
+    private Company company;
 
-    public JobPortalUser(Long id, String username, String email, String password, Role role) {
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public JobPortalUser(Long id, String username, String email, String password, Role role, Company company) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.company = company;
     }
 
     public JobPortalUser() {
