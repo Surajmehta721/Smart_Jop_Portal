@@ -131,5 +131,24 @@ public class JobController {
 
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> search(@RequestParam String keyword)
+    {
+        List<Job> jobs=jobRepo.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrSkillsContainingIgnoreCase(keyword,keyword,keyword);
+        if(jobs.isEmpty())
+            return ResponseEntity.badRequest().body("Job Does not Exist");
+
+        List<JobResDTO> jobDTOS = new ArrayList<>();
+
+        for (Job job : jobs) {
+            JobResDTO dto = modelMapper.map(job, JobResDTO.class);
+            jobDTOS.add(dto);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(jobDTOS);
+
+
+    }
+
 
 }
