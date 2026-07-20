@@ -11,19 +11,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.security.Principal;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("api/recruiter/company")
-public class RecruiterController {
+public class CompanyController {
 
-    private CompanyRepo companyRepo;
-    private UserRepo userRepo;
-    private ModelMapper modelMapper;
+    private final CompanyRepo companyRepo;
+    private final UserRepo userRepo;
+    private final ModelMapper modelMapper;
 
-    public RecruiterController(CompanyRepo companyRepo, UserRepo userRepo, ModelMapper modelMapper) {
+    public CompanyController(CompanyRepo companyRepo, UserRepo userRepo, ModelMapper modelMapper) {
         this.companyRepo = companyRepo;
         this.userRepo = userRepo;
         this.modelMapper = modelMapper;

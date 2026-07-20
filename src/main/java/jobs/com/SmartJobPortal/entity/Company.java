@@ -2,6 +2,9 @@ package jobs.com.SmartJobPortal.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="Portal_Company")
 public class Company {
@@ -16,13 +19,21 @@ public class Company {
     @JoinColumn(name = "recruiter_id")
     private JobPortalUser recruiter;
 
-    public Company(Long id, String name, String description, String website, String location, JobPortalUser recruiter) {
+    @OneToMany(
+            mappedBy = "company",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Job> jobs = new ArrayList<>();
+
+    public Company(Long id, String name, String description, String website, String location, JobPortalUser recruiter, List<Job> jobs) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.website = website;
         this.location = location;
         this.recruiter = recruiter;
+        this.jobs = jobs;
     }
 
     public Company() {
@@ -74,5 +85,13 @@ public class Company {
 
     public void setRecruiter(JobPortalUser recruiter) {
         this.recruiter = recruiter;
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
     }
 }
