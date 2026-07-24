@@ -3,8 +3,8 @@ package jobs.com.SmartJobPortal.entity;
 import jakarta.persistence.*;
 import jobs.com.SmartJobPortal.model.JobStatus;
 import jobs.com.SmartJobPortal.model.JobType;
-
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -27,6 +27,12 @@ public class Job {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
+    @OneToMany(
+            mappedBy = "job",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Application> applications = new ArrayList<>();
 
 
     @PrePersist
@@ -36,7 +42,7 @@ public class Job {
         }
     }
 
-    public Job(Long id, String title, String description, String location, Double salary, String experience, JobType jobType, String skills, JobStatus status, Company company) {
+    public Job(Long id, String title, String description, String location, Double salary, String experience, JobType jobType, String skills, JobStatus status, Company company, List<Application> applications) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -47,6 +53,7 @@ public class Job {
         this.skills = skills;
         this.status = status;
         this.company = company;
+        this.applications = applications;
     }
 
     public Job() {
@@ -130,5 +137,13 @@ public class Job {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 }

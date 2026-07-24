@@ -32,19 +32,19 @@ public class CompanyController {
     @PreAuthorize("hasRole('RECRUITER')")
     public ResponseEntity<?> create(@RequestBody CompanyRequest company , Principal principal)
     {
-        Optional<Company>  db_company=companyRepo.findByNameAndLocation(company.getName(), company.getLocation());
+        Optional<Company>  db_company=companyRepo.findByCompanyNameAndLocation(company.getCompanyName(), company.getLocation());
         if(db_company.isPresent())
-            return ResponseEntity.badRequest().body(company.getName()+" Already Registered for "+company.getLocation()+" Location");
+            return ResponseEntity.badRequest().body(company.getCompanyName()+" Already Registered for "+company.getLocation()+" Location");
 
         JobPortalUser recruiter =userRepo.findByUsername(principal.getName()).orElse(null);
         Company company1=new Company();
-        company1.setName(company.getName());
+        company1.setCompanyName(company.getCompanyName());
         company1.setDescription(company.getDescription());
         company1.setLocation(company.getLocation());
         company1.setWebsite(company.getWebsite());
         company1.setRecruiter(recruiter);
         companyRepo.save(company1);
-        return ResponseEntity.status(HttpStatus.CREATED).body(company.getName()+" Registered Successfully for "+company.getLocation()+" Location");
+        return ResponseEntity.status(HttpStatus.CREATED).body(company.getCompanyName()+" Registered Successfully for "+company.getLocation()+" Location");
 
 
     }
@@ -78,7 +78,7 @@ public class CompanyController {
         modelMapper.map(company_dto,  exist_company);
 
         companyRepo.save(exist_company);
-        return ResponseEntity.status(HttpStatus.OK).body(exist_company.getName()+" Updated Successfully");
+        return ResponseEntity.status(HttpStatus.OK).body(exist_company.getCompanyName()+" Updated Successfully");
 
 
     }

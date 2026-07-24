@@ -3,6 +3,9 @@ package jobs.com.SmartJobPortal.entity;
 import jakarta.persistence.*;
 import jobs.com.SmartJobPortal.model.Role;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class JobPortalUser {
     @Id
@@ -16,6 +19,10 @@ public class JobPortalUser {
     @OneToOne(mappedBy = "recruiter", cascade = CascadeType.ALL)
     private Company company;
 
+
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Application> applications = new ArrayList<>();
+
     public Company getCompany() {
         return company;
     }
@@ -24,16 +31,25 @@ public class JobPortalUser {
         this.company = company;
     }
 
-    public JobPortalUser(Long id, String username, String email, String password, Role role, Company company) {
+    public JobPortalUser(Long id, String username, String email, String password, Role role, Company company, List<Application> applications) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
         this.company = company;
+        this.applications = applications;
     }
 
     public JobPortalUser() {
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     public Long getId() {

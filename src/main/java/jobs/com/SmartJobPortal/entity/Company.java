@@ -11,7 +11,8 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    @Column(name = "name")
+    private String companyName;
     private String description;
     private String website;
     private String location;
@@ -28,7 +29,7 @@ public class Company {
 
     public Company(Long id, String name, String description, String website, String location, JobPortalUser recruiter, List<Job> jobs) {
         this.id = id;
-        this.name = name;
+        this.companyName = name;
         this.description = description;
         this.website = website;
         this.location = location;
@@ -47,12 +48,12 @@ public class Company {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String name) {
+        this.companyName = name;
     }
 
     public String getDescription() {

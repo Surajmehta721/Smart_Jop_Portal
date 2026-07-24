@@ -1,13 +1,13 @@
 package jobs.com.SmartJobPortal.model;
 
 public class CompanyRequest {
-    private String name;
+    private String companyName;
     private String description;
     private String website;
     private String location;
 
     public CompanyRequest(String name, String description, String website, String location) {
-        this.name = name;
+        this.companyName = name;
         this.description = description;
         this.website = website;
         this.location = location;
@@ -16,12 +16,12 @@ public class CompanyRequest {
     public CompanyRequest() {
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String name) {
+        this.companyName = name;
     }
 
     public String getDescription() {
